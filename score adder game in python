@@ -1,0 +1,678 @@
+import pygame
+import time
+from sys import exit
+from pygame.locals import*
+pygame.init()
+a = pygame.time.Clock()
+def page1():
+    scr1 = pygame.display.set_mode((800, 800))
+    img3 = pygame.image.load("C:/Users/Dell/OneDrive/Desktop/icons/player.jpg").convert()
+    player = img3.get_rect()
+    player.center = (100,780)
+    text2 = pygame.font.SysFont("century gothic", 21)
+    c2 = text2.render("press space to continue", True, (200, 200, 200))
+    c2Rect = c2.get_rect()
+    c2Rect.center = (390, 300)
+    text = pygame.font.SysFont("century gothic",48)
+    s = 1
+    b = text.render(str(s),True,"Red")
+    pos1 = 1
+    pos2 = 0.51
+
+    obj1 = Rect(100,440,60,60)
+    obj2 = Rect(260, 580, 20, 20)
+    obj4 = Rect(260, 440, 3, 60)
+    obj5 = Rect(260, 180, 3, 60)
+    obj3 = Rect(100, 180, 60, 60)
+    obj6 = Rect(325, 100, 30, 60)
+    obj7 = Rect(480, 380, 20, 20)
+    obj8 = Rect(630, 180, 60, 60)
+    obj9 = Rect(460, 180, 3, 60)
+    obj10 = Rect(630,440, 60, 60)
+    obj11 = Rect(460, 440, 3, 60)
+    obj12 = Rect(460, 580, 20, 20)
+    obj13 = Rect(325, 660, 30, 60)
+    obj14 = Rect(480, 770, 20, 20)
+
+    wall = Rect(15, 10, 1, 782)
+    wall3 = Rect(786, 10, 1, 782)
+    wall1 = Rect(15, 10, 771, 1)
+    wall4 = Rect(15, 793, 773, 1)
+    wall2 = Rect(264, 250, 1, 174)
+    wall6 = Rect(264, 510, 1, 64)
+    wall5 = Rect(264, 250, 33, 1)
+    wall7 = Rect(379, 250, 56, 1)
+    wall8 = Rect(514, 250, 33, 1)
+    wall9 = Rect(547, 250, 1, 174)
+    wall10 = Rect(547, 510, 1, 64)
+    wall11 = Rect(264, 574, 33, 1)
+    wall12 = Rect(379, 574, 56, 1)
+    wall13 = Rect(514, 574, 33, 1)
+    #gates
+    wall14 = Rect(297, 250, 83,1)
+    wall15 = Rect(435, 250, 80, 1)
+    wall16 = Rect(297, 574, 83, 1)
+    wall17 = Rect(435, 574, 80, 1)
+    wall18 = Rect(264, 424, 1, 87)
+    wall19 = Rect(547, 424, 1, 87)
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+        key1 = pygame.key.get_pressed()
+        if key1[pygame.K_UP]:
+            if player.top > 10:
+                player.top -= pos1
+        if key1[pygame.K_DOWN]:
+            if player.top < 740:
+                player.bottom += pos1
+        if key1[pygame.K_LEFT]:
+            if player.left > 10:
+                player.left -= pos1
+        if key1[pygame.K_RIGHT]:
+            if player.right < 790:
+                player.right += pos1
+
+        if pygame.Rect.colliderect(wall,player):
+            player.left = wall.right
+        if pygame.Rect.colliderect(wall1,player):
+            player.top = wall1.bottom
+        if pygame.Rect.colliderect(wall4,player):
+            player.bottom = wall4.top
+        if pygame.Rect.colliderect(wall2,player):
+            player.right = wall2.left
+        if pygame.Rect.colliderect(wall3,player):
+            player.right = wall3.left
+        if pygame.Rect.colliderect(wall6,player):
+            player.right = wall6.left
+        if pygame.Rect.colliderect(wall5,player):
+            player.bottom = wall5.top
+        if pygame.Rect.colliderect(wall7,player):
+            player.bottom = wall7.top
+        if pygame.Rect.colliderect(wall8,player):
+            player.bottom = wall8.top
+        if pygame.Rect.colliderect(wall9,player):
+            player.left = wall8.right
+        if pygame.Rect.colliderect(wall10, player):
+            player.left = wall8.right
+        if pygame.Rect.colliderect(wall11, player):
+            player.top = wall11.bottom
+        if pygame.Rect.colliderect(wall12, player):
+            player.top = wall12.bottom
+        if pygame.Rect.colliderect(wall13, player):
+            player.top = wall13.bottom
+
+        if pygame.Rect.colliderect(wall14,player):
+            s = s + 0.14
+        if pygame.Rect.colliderect(wall15,player):
+            s = s + 0.14
+        if pygame.Rect.colliderect(wall16, player):
+            s = s + 0.14
+        if pygame.Rect.colliderect(wall17, player):
+            s = s + 0.14
+        if pygame.Rect.colliderect(wall18, player):
+            s = s + 0.14
+        if pygame.Rect.colliderect(wall19, player):
+            s = s + 0.14
+
+
+        if pygame.Rect.colliderect(obj2,player):
+            player.bottom = 10600
+            obj4.bottom = 10950
+            obj1.bottom = 10800
+            obj3.bottom = 10900
+            obj2.bottom = 10950
+            obj5.bottom = 10950
+            obj6.right = 10950
+            obj7.right = 20950
+            obj9.bottom = 20950
+            obj8.bottom = 20950
+            obj10.bottom = 20950
+            obj11.bottom = 20950
+            obj12.bottom = 20950
+            obj13.right = 10950
+            obj14.right = 20950
+            b = text.render(str(round(0.1 * s)), True, "Green")
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if player.bottom == 10600:
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if obj3.bottom == 10800:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj1.bottom == 10900:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj2.bottom == 10950:
+            if key1[pygame.K_SPACE]:
+                page1()
+
+
+        if pygame.Rect.colliderect(obj4, player):
+            player.bottom = 10600
+            obj5.bottom = 10950
+            obj1.bottom = 10800
+            obj3.bottom = 10900
+            obj2.bottom = 10950
+            obj4.bottom = 10950
+            obj6.right = 10950
+            obj7.right = 10950
+            obj9.bottom = 20950
+            obj8.bottom = 20950
+            obj10.bottom = 20950
+            obj11.bottom = 20950
+            obj12.bottom = 20950
+            obj13.right = 10950
+            obj14.right = 20950
+            b = text.render(str(round(0.1 * s)), True, "Green")
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if player.bottom == 10600:
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if obj3.bottom == 10800:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj1.bottom == 10900:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj2.bottom == 10950:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj4.bottom == 10950:
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if pygame.Rect.colliderect(obj5, player):
+            player.bottom = 10600
+            obj5.bottom = 10950
+            obj1.bottom = 10800
+            obj3.bottom = 10900
+            obj2.bottom = 10950
+            obj4.bottom = 10950
+            obj6.right = 10950
+            obj7.right = 10950
+            obj9.bottom = 20950
+            obj8.bottom = 20950
+            obj10.bottom = 20950
+            obj11.bottom = 20950
+            obj12.bottom = 20950
+            obj13.right = 10950
+            obj14.right = 20950
+            b = text.render(str(round(0.1 * s)), True, "Green")
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if player.bottom == 10600:
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if obj3.bottom == 10800:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj1.bottom == 10900:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj2.bottom == 10950:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj4.bottom == 10950:
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if pygame.Rect.colliderect(obj6, player):
+            player.bottom = 10600
+            obj5.bottom = 10950
+            obj1.bottom = 10800
+            obj3.bottom = 10900
+            obj2.bottom = 10950
+            obj4.bottom = 10950
+            obj6.right = 10950
+            obj7.right = 10950
+            obj9.bottom = 20950
+            obj8.bottom = 20950
+            obj10.bottom = 20950
+            obj11.bottom = 20950
+            obj12.bottom = 20950
+            obj13.right = 10950
+            obj14.right = 20950
+            b = text.render(str(round(0.1 * s)), True, "Green")
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if player.bottom == 10600:
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if obj3.bottom == 10800:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj1.bottom == 10900:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj2.bottom == 10950:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj4.bottom == 10950:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj6.bottom == 10950:
+            if key1[pygame.K_SPACE]:
+                page1()
+
+
+        if pygame.Rect.colliderect(obj7, player):
+            player.bottom = 10600
+            obj5.bottom = 10950
+            obj1.bottom = 10800
+            obj3.bottom = 10900
+            obj2.bottom = 10950
+            obj4.bottom = 10950
+            obj6.right = 10950
+            obj7.right = 20950
+            obj9.bottom = 20950
+            obj8.bottom = 20950
+            obj10.bottom = 20950
+            obj11.bottom = 20950
+            obj12.bottom = 20950
+            obj13.right = 10950
+            obj14.right = 20950
+            b = text.render(str(round(0.1 * s)), True, "Green")
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if player.bottom == 10600:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if obj3.bottom == 10800:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj1.bottom == 10900:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj2.bottom == 10950:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj4.bottom == 10950:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj6.bottom == 10950:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if pygame.Rect.colliderect(obj9, player):
+            player.bottom = 10600
+            obj5.bottom = 10950
+            obj1.bottom = 10800
+            obj3.bottom = 10900
+            obj2.bottom = 10950
+            obj4.bottom = 10950
+            obj6.right = 10950
+            obj7.right = 20950
+            obj9.bottom = 20950
+            obj8.bottom = 20950
+            obj10.bottom = 20950
+            obj11.bottom = 20950
+            obj12.bottom = 20950
+            obj13.right = 10950
+            obj14.right = 20950
+            b = text.render(str(round(0.1 * s)), True, "Green")
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if player.bottom == 10600:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if obj3.bottom == 10800:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj1.bottom == 10900:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj2.bottom == 10950:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj4.bottom == 10950:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj6.bottom == 10950:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+
+
+        if pygame.Rect.colliderect(obj11, player):
+            player.bottom = 10600
+            obj5.bottom = 10950
+            obj1.bottom = 10800
+            obj3.bottom = 10900
+            obj2.bottom = 10950
+            obj4.bottom = 10950
+            obj6.right = 10950
+            obj7.right = 20950
+            obj9.bottom = 20950
+            obj8.bottom = 20950
+            obj10.bottom = 20950
+            obj11.bottom = 20950
+            obj12.bottom = 20950
+            obj13.right = 10950
+            obj14.right = 20950
+            b = text.render(str(round(0.1 * s)), True, "Green")
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if player.bottom == 10600:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if obj3.bottom == 10800:
+            scr1.blit(c2, c2Rect)
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj1.bottom == 10900:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj2.bottom == 10950:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj4.bottom == 10950:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj6.bottom == 10950:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if pygame.Rect.colliderect(obj12, player):
+            player.bottom = 10600
+            obj5.bottom = 10950
+            obj1.bottom = 10800
+            obj3.bottom = 10900
+            obj2.bottom = 10950
+            obj4.bottom = 10950
+            obj6.right = 10950
+            obj7.right = 20950
+            obj9.bottom = 20950
+            obj8.bottom = 20950
+            obj10.bottom = 20950
+            obj11.bottom = 20950
+            obj12.bottom = 20950
+            obj13.right = 10950
+            obj14.right = 20950
+            b = text.render(str(round(0.1 * s)), True, "Green")
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if player.bottom == 10600:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if obj3.bottom == 10800:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj1.bottom == 10900:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj2.bottom == 10950:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj4.bottom == 10950:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj6.bottom == 10950:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+
+
+        if pygame.Rect.colliderect(obj13, player):
+            player.bottom = 10600
+            obj5.bottom = 10950
+            obj1.bottom = 10800
+            obj3.bottom = 10900
+            obj2.bottom = 10950
+            obj4.bottom = 10950
+            obj6.right = 10950
+            obj7.right = 20950
+            obj9.bottom = 20950
+            obj8.bottom = 20950
+            obj10.bottom = 20950
+            obj11.bottom = 20950
+            obj12.bottom = 20950
+            obj13.right = 10950
+            obj14.right = 20950
+
+            b = text.render(str(round(0.1 * s)), True, "Green")
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if player.bottom == 10600:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if obj3.bottom == 10800:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj1.bottom == 10900:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj2.bottom == 10950:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj4.bottom == 10950:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj6.bottom == 10950:
+
+            if key1[pygame.K_SPACE]:
+                page1()
+
+
+        if pygame.Rect.colliderect(obj14, player):
+            player.bottom = 10600
+            obj5.bottom = 10950
+            obj1.bottom = 10800
+            obj3.bottom = 10900
+            obj2.bottom = 10950
+            obj4.bottom = 10950
+            obj6.right = 10950
+            obj7.right = 20950
+            obj9.bottom = 20950
+            obj8.bottom = 20950
+            obj10.bottom = 20950
+            obj11.bottom = 20950
+            obj12.bottom = 20950
+            obj13.right = 10950
+            obj14.right = 20950
+            b = text.render(str(round(0.1 * s)), True, "Green")
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if player.bottom == 10600:
+            if key1[pygame.K_SPACE]:
+                page1()
+
+        if obj3.bottom == 10800:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj1.bottom == 10900:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj2.bottom == 10950:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj4.bottom == 10950:
+            if key1[pygame.K_SPACE]:
+                page1()
+        if obj6.bottom == 10950:
+            if key1[pygame.K_SPACE]:
+                page1()
+
+
+
+
+        if pygame.Rect.colliderect(obj1,player):
+            s = s + 0.08
+            #obj1.top = obj1.top - 1
+        if pygame.Rect.colliderect(obj1,player):
+            obj1.bottom += 0.3
+
+        if pygame.Rect.colliderect(obj3,player):
+            s = s + 0.14
+        if pygame.Rect.colliderect(obj8,player):
+            s = s + 0.30
+        if pygame.Rect.colliderect(obj10, player):
+            s = s + 0.45
+
+        obj2.left -= pos2
+        if obj2.left < 13:
+            obj2.left = 380
+        obj4.left -= pos2
+        if obj4.left < 13:
+            obj4.left = 380
+        obj5.left -= pos2
+        if obj5.left < 13:
+            obj5.left = 380
+        """obj6.top -= pos2
+        if obj6.top < 13:
+            obj6.top = 250"""
+        obj7.top -= pos2
+        if obj7.top < 13:
+            obj7.top = 360
+        obj9.right += pos2
+        if obj9.right > 790:
+            obj9.right = 460
+        obj11.right += pos2
+        if obj11.right > 790:
+            obj11.right = 460
+        obj12.right += pos2
+        if obj12.right > 790:
+            obj12.right = 460
+        obj14.bottom += pos2
+        if obj14.bottom > 788:
+            obj14.bottom = 490
+        """obj13.bottom += pos2
+        if obj13.bottom > 788:
+            obj13.bottom = 590"""
+
+        scr1.fill((0, 0, 0))
+        scr1.blit(img3,player)
+
+        b = text.render(str(round(0.1 * s)), True, "White")
+        pygame.draw.rect(scr1,(0,0,255),obj1)
+        pygame.draw.rect(scr1, (0, 180, 255), obj4)
+        pygame.draw.rect(scr1, (250, 0, 255), obj3)
+        pygame.draw.rect(scr1, (160, 0, 255), obj5)
+        pygame.draw.rect(scr1, (0, 20, 255), obj2)
+        pygame.draw.rect(scr1, (120, 255, 120), obj6)
+        pygame.draw.rect(scr1, (120, 255, 120), obj7)
+        pygame.draw.rect(scr1, (0, 190, 40), obj8)
+        pygame.draw.rect(scr1, (0, 200, 0), obj9)
+        pygame.draw.rect(scr1, (200, 0, 0), obj10)
+        pygame.draw.rect(scr1, (200, 80, 100), obj11)
+        pygame.draw.rect(scr1, (200, 0, 0), obj12)
+        pygame.draw.rect(scr1, (250, 250, 0), obj13)
+        pygame.draw.rect(scr1, (250, 250, 0), obj14)
+
+        pygame.draw.rect(scr1, (200, 200, 200), wall)
+        pygame.draw.rect(scr1, (200, 200, 200), wall3)
+        pygame.draw.rect(scr1,(200,200,200), wall1)
+        pygame.draw.rect(scr1, (200, 200, 200), wall2)
+        pygame.draw.rect(scr1, (200, 200, 200), wall4)
+        pygame.draw.rect(scr1, (200, 200, 200), wall5)
+        pygame.draw.rect(scr1, (200, 200, 200), wall6)
+        pygame.draw.rect(scr1, (200, 200, 200), wall7)
+        pygame.draw.rect(scr1, (200, 200, 200), wall8)
+        pygame.draw.rect(scr1, (200, 200, 200), wall9)
+        pygame.draw.rect(scr1, (200, 200, 200), wall10)
+        pygame.draw.rect(scr1, (200, 200, 200), wall11)
+        pygame.draw.rect(scr1, (200, 200, 200), wall12)
+        pygame.draw.rect(scr1, (200, 200, 200), wall13)
+        pygame.draw.rect(scr1, (200, 130, 50), wall14)
+        pygame.draw.rect(scr1, (200, 130, 50), wall15)
+        pygame.draw.rect(scr1, (200, 130, 50), wall16)
+        pygame.draw.rect(scr1, (200, 130, 50), wall17)
+        pygame.draw.rect(scr1, (200, 130, 50), wall18)
+        pygame.draw.rect(scr1, (200, 130, 50), wall19)
+        scr1.blit(b,(400,300))
+
+        pygame.display.update()
+
+
+def menu():
+    scr = pygame.display.set_mode((800, 800))
+    img = pygame.image.load("C:/Users/Dell/OneDrive/Desktop/icons/player.jpg").convert()
+    img2 = pygame.image.load("C:/Users/Dell/OneDrive/Desktop/icons/button.jpg").convert()
+    surf1 = img.get_rect()
+    surf1.center = (232, 250)
+    surf2 = Rect(300, 0, 20, 20)
+    surf2.center = (400, 550)
+    surf3 = img2.get_rect()
+    surf3.center = (400, 430)
+    text = pygame.font.SysFont("century gothic", 50)
+    text1 = pygame.font.SysFont("century gothic", 21)
+    pos = 2
+
+    c = text.render("score_adder", True, (10,150,100))
+    cRect = c.get_rect()
+    cRect.center = (420, 250)
+
+    c1 = text1.render("drag the player towards the button to start", True, (200, 200, 200))
+    c1Rect = c1.get_rect()
+    c1Rect.center = (390, 300)
+
+
+    # scr1 = pygame.display.set_mode((400, 400))
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+        key = pygame.key.get_pressed()
+        if key[pygame.K_UP]:
+            if surf2.top > 10:
+                surf2.top -= pos
+        if pygame.Rect.colliderect(surf3,surf2):
+            page1()
+
+        scr.fill((0, 0, 0))
+        scr.blit(c,cRect)
+        scr.blit(c1, c1Rect)
+        scr.blit(img2, surf3)
+        scr.blit(img,surf1)
+        pygame.draw.rect(scr, (255, 255, 255), surf2)
+        pygame.display.update()
+menu()
